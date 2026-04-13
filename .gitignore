@@ -1,0 +1,24 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+db.sqlite3
+
+# Django
+media/
+
+# ML
+*.pkl
+# *.csv      ← allow CSV files
+# *.xlsx     ← allow Excel files
+
+# Node
+node_modules/
+dist/
+
+# VSCode
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
