@@ -121,7 +121,7 @@ function PestVegetablePage() {
               borderRadius: "12px",
               width: "420px",
               maxWidth: "95%",
-              maxHeight: "85vh", // ✅ FIX: prevents overflow
+              maxHeight: "85vh", 
               display: "flex",
               flexDirection: "column",
               overflow: "hidden",
@@ -131,7 +131,7 @@ function PestVegetablePage() {
             <div
               style={{
                 padding: "16px",
-                overflowY: "auto", // ✅ FIX: scroll inside modal
+                overflowY: "auto", 
               }}
             >
               <h2
