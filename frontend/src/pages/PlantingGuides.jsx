@@ -106,7 +106,7 @@ function PlantingGuides() {
       {selectedGuide && (
         <div style={{ maxWidth: "800px", margin: "0 auto" }}> {/* 🔥 smaller width */}
 
-          {/* 🌤️ CLIMATE */}
+          {/*  CLIMATE */}
           {climateSection && (
             <div
               style={{
@@ -170,7 +170,7 @@ function PlantingGuides() {
             ))}
           </div>
 
-          {/* 🌾 HARVEST */}
+          {/* HARVEST */}
           <div style={{ marginTop: "25px" }}>
             <h3 style={{ color: "#2e7d32", fontSize: "16px" }}>
               Harvest Guide
