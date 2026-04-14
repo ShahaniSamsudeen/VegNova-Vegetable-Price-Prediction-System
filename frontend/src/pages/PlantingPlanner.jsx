@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Farm3D from "./Farm3D";
 
-/* 🌱 SVG ICONS */
+/* ICONS */
 const CarrotSVG = () => (
   <svg width="20" height="20" viewBox="0 0 24 24">
     <path d="M12 22c1-6 1-10 0-14" stroke="#2e7d32" strokeWidth="2" />
@@ -26,7 +26,7 @@ export default function PlantingPlanner() {
   const [veg, setVeg] = useState(null);
   const [perches, setPerches] = useState("");
 
-  /* 🔥 NEW RESULT STATE */
+  
   const [result, setResult] = useState(null);
 
   useEffect(() => {
@@ -44,7 +44,7 @@ export default function PlantingPlanner() {
         (veg.plant_spacing_max_cm ?? veg.plant_spacing_min_cm)) / 2
     );
 
-  /* 🔥 BUTTON CLICK CALCULATION */
+  /*  BUTTON CLICK CALCULATION */
   const handleCalculate = () => {
     const plantCount = Math.floor(
       (perches * 25.29) /
@@ -171,7 +171,7 @@ export default function PlantingPlanner() {
   );
 }
 
-/* 🎨 STYLES — UNCHANGED */
+
 const page = { padding: "30px 16px", background: "#ffffff" };
 const title = { textAlign: "center", fontSize: "36px", color: "#1b5e20" };
 const subtitle = { textAlign: "center", color: "#6b7280", marginBottom: "50px" };
