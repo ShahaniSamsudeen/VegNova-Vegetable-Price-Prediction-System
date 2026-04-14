@@ -30,9 +30,7 @@ export default function TestForecast() {
     fetchForecast();
   }, []);
 
-  // --------------------
-  // RENDER STATES
-  // --------------------
+  
   if (loading) {
     return <p style={{ padding: 20 }}>Loading forecast…</p>;
   }
