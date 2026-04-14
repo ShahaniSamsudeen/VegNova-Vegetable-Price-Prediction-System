@@ -4,8 +4,8 @@
   min-height: 100vh;
 
   display: flex;
-  justify-content: center;   /* 🔥 center horizontally */
-  align-items: center;       /* 🔥 center vertically */
+  justify-content: center;   
+  align-items: center;       
 }
 
 /* INNER WRAPPER */
