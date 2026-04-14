@@ -136,7 +136,7 @@ function Dashboard() {
               <motion.div
   style={{
     display: "grid",
-    gridTemplateColumns: "repeat(3, 1fr)", // 🔥 3 per row
+    gridTemplateColumns: "repeat(3, 1fr)", 
     gap: "60px 40px",
     justifyItems: "center",
   }}
