@@ -8,7 +8,7 @@ function Footer() {
       style={{
         background: "#1b5e20",
         color: "#e8f5e9",
-        padding: "16px 18px 8px", // ✅ reduced
+        padding: "16px 18px 8px", 
       }}
     >
       {/* MAIN CONTENT */}
@@ -18,7 +18,7 @@ function Footer() {
           margin: "0 auto",
           display: "grid",
           gridTemplateColumns: "1.3fr 1fr 1fr",
-          gap: "20px", // ✅ reduced
+          gap: "20px", 
         }}
       >
         {/* LEFT - ABOUT */}
@@ -32,7 +32,7 @@ function Footer() {
           </p>
         </div>
 
-        {/* CENTER - QUICK LINKS */}
+        {/* LINKS */}
         <div>
           <h4 style={heading}>Quick Links</h4>
 
@@ -57,7 +57,7 @@ function Footer() {
 </div>
         </div>
 
-        {/* RIGHT - DATA */}
+        {/* DATA */}
         <div>
           <h4 style={heading}>Data & Insights</h4>
 
@@ -77,7 +77,7 @@ function Footer() {
   );
 }
 
-/* STYLES */
+
 const title = {
   fontSize: "18px",
   fontWeight: "700",
@@ -88,13 +88,13 @@ const title = {
 const heading = {
   fontSize: "14px",
   fontWeight: "600",
-  marginBottom: "10px", // ✅ reduced
+  marginBottom: "10px", 
   color: "#ffffff",
 };
 
 const text = {
-  fontSize: "12.8px", // ✅ smaller
-  lineHeight: "1.4", // ✅ tighter
+  fontSize: "12.8px", 
+  lineHeight: "1.4", 
   color: "#cfe8d5",
 };
 
@@ -102,22 +102,22 @@ const list = {
   listStyle: "none",
   padding: 0,
   margin: 0,
-  lineHeight: "1.4", // ✅ tighter
+  lineHeight: "1.4", 
 };
 
 const link = {
   cursor: "pointer",
   color: "#cfe8d5",
-  fontSize: "12.8px", // ✅ smaller
+  fontSize: "12.8px", 
   transition: "0.2s",
 };
 
 const bottom = {
-  marginTop: "10px", // ✅ reduced
-  paddingTop: "6px", // ✅ reduced
+  marginTop: "10px", 
+  paddingTop: "6px", 
   borderTop: "1px solid rgba(255,255,255,0.2)",
   textAlign: "center",
-  fontSize: "11.5px", // ✅ smaller
+  fontSize: "11.5px", 
   color: "#cfe8d5",
 };
 
