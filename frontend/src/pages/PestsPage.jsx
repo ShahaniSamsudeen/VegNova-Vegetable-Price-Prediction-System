@@ -70,7 +70,7 @@ function PestsPage() {
           style={{
             color: "#5f7d63",
             marginBottom: "30px",
-            whiteSpace: "nowrap", // ✅ FORCE SINGLE LINE
+            whiteSpace: "nowrap", 
           }}
         >
           Choose a vegetable to view common pests and learn how to protect your crops effectively.
