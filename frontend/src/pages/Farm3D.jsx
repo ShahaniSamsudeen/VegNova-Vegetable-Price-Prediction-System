@@ -3,10 +3,10 @@ import { OrbitControls, useGLTF } from "@react-three/drei";
 import { useRef, Suspense, useMemo } from "react";
 import * as THREE from "three";
 
-/* 🔥 PRELOAD */
+
 useGLTF.preload("/models/carrot.glb");
 
-/* 🌱 3D Plant Model */
+/* 3D Plant Model */
 function PlantModel({ type, position, delay }) {
   const ref = useRef();
 
@@ -23,7 +23,7 @@ function PlantModel({ type, position, delay }) {
 
   const { scene } = useGLTF(modelMap[type] || "/models/carrot.glb");
 
-  /* ✅ APPLY MATERIAL */
+  
   const model = useMemo(() => {
     const cloned = scene.clone();
 
@@ -56,7 +56,7 @@ function PlantModel({ type, position, delay }) {
 
   const scale = scaleMap[type] || 1.5;
 
-  /* 🌱 ANIMATION */
+  /*  ANIMATION */
   useFrame(({ clock }) => {
     const t = clock.getElapsedTime() - delay;
     if (t > 0 && ref.current) {
@@ -73,7 +73,7 @@ function PlantModel({ type, position, delay }) {
 
   const rotation = rotationMap[type] || rotationMap.default;
 
-  /* HEIGHT */
+  
   const yMap = {
     Beetroot: -0.2,
     default: -0.4,
@@ -92,26 +92,26 @@ function PlantModel({ type, position, delay }) {
   );
 }
 
-/* 🌾 MAIN FARM */
+/*  MAIN FARM */
 export default function Farm3D({ count, type, spacing }) {
   const plants = [];
 
   const size = 20;
   const offset = size / 2;
 
-  /* 🔥 DENSITY CONTROL */
+  /* DENSITY CONTROL */
   const baseGap = 0.6;
   const gap = spacing
     ? Math.max(0.3, Math.min(1.2, spacing / 10))
     : baseGap;
 
-  /* 🔥 FULL EDGE-TO-EDGE GRID */
+  /*  FULL EDGE-TO-EDGE GRID */
   for (let x = 0; x < size; x++) {
     for (let z = 0; z < size; z++) {
       plants.push([
-        (x - offset + 0.5) * gap, // 👈 FIXED alignment
+        (x - offset + 0.5) * gap, 
         0.25,
-        (z - offset + 0.5) * gap, // 👈 FIXED alignment
+        (z - offset + 0.5) * gap, 
       ]);
     }
   }
@@ -125,14 +125,14 @@ export default function Farm3D({ count, type, spacing }) {
       }}
       shadows
     >
-      {/* 🌤 BACKGROUND */}
+      {/*  BACKGROUND */}
       <color attach="background" args={["#e6f7ec"]} />
 
-      {/* 💡 LIGHTING */}
+      {/* LIGHTING */}
       <ambientLight intensity={1.2} />
       <directionalLight position={[10, 15, 10]} intensity={2} castShadow />
 
-      {/* 🌍 GROUND (MATCHED EXACTLY) */}
+      {/*  GROUND  */}
       <mesh
         position={[0, -0.01, 0]}
         rotation={[-Math.PI / 2, 0, 0]}
@@ -142,7 +142,7 @@ export default function Farm3D({ count, type, spacing }) {
         <meshStandardMaterial color="#8B5A2B" />
       </mesh>
 
-      {/* 🌱 PLANTS */}
+      {/*  PLANTS */}
       <Suspense fallback={null}>
         {plants.map((pos, i) => (
           <PlantModel
@@ -154,7 +154,7 @@ export default function Farm3D({ count, type, spacing }) {
         ))}
       </Suspense>
 
-      {/* 🎮 CONTROLS */}
+      {/*CONTROLS */}
       <OrbitControls
         enableRotate
         enableZoom
