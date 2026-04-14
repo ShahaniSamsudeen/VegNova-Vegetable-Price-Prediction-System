@@ -55,7 +55,7 @@ function VegetablePage() {
         backgroundImage: `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(${vegBackgrounds[vegName]})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
-        padding: "15px 30px", // 🔥 reduced
+        padding: "15px 30px", 
       }}
     >
       {/* TITLE */}
@@ -150,7 +150,7 @@ function VegetablePage() {
                   src={selectedDisease.image}
                   alt=""
                   style={{
-                    width: "180px", // 🔥 smaller
+                    width: "180px", 
                     height: "120px",
                     objectFit: "cover",
                     borderRadius: "8px",
