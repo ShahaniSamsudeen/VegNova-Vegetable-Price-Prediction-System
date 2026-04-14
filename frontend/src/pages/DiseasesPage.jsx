@@ -9,7 +9,7 @@ function DiseasesPage() {
     { key: "carrot", label: "Carrot", emoji: "🥕" },
     { key: "leeks", label: "Leeks", emoji: "🧅" },
     { key: "beetroot", label: "Beetroot", emoji: "🟥" },
-    { key: "radish", label: "Radish", emoji: "🧄" }, // ✅ FIXED
+    { key: "radish", label: "Radish", emoji: "🧄" }, 
     { key: "cabbage", label: "Cabbage", emoji: "🥬" },
     { key: "tomato", label: "Tomato", emoji: "🍅" },
     { key: "knolkhol", label: "Knol Khol", emoji: "🥦" },
@@ -28,7 +28,7 @@ function DiseasesPage() {
       <h1
         style={{
           color: "#2e7d32",
-          marginBottom: "6px", // ✅ REDUCED GAP
+          marginBottom: "6px", 
           fontWeight: "600",
         }}
       >
@@ -38,7 +38,7 @@ function DiseasesPage() {
       <p
         style={{
           color: "#5f7d63",
-          marginBottom: "30px", // ✅ tighter spacing
+          marginBottom: "30px", 
         }}
       >
         Select a vegetable to find common diseases and their solutions
@@ -52,7 +52,7 @@ function DiseasesPage() {
           display: "grid",
           gridTemplateColumns: "1fr 1fr",
           columnGap: "20px",
-          rowGap: "28px", // ✅ MORE SPACE BETWEEN ROWS
+          rowGap: "28px", 
         }}
       >
         {vegetables.map((veg) => (
