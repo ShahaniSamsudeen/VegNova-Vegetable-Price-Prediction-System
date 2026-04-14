@@ -151,7 +151,7 @@ function Predictions() {
 
 export default Predictions;
 
-/* ================= STYLES ================= */
+
 
 const textBlack = {
   color: "#000",
