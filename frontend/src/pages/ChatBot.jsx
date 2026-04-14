@@ -58,7 +58,7 @@ function ChatBot() {
     return null;
   };
 
-  // 🌱 vegetable detection
+  //vegetable detection
   const detectVegetable = (msg) => {
     const found = vegetables.find((v) => msg.includes(v));
     if (found) return found;
@@ -67,7 +67,7 @@ function ChatBot() {
     return result.length ? result[0].item : null;
   };
 
-  // 📅 month detection
+  // month detection
   const detectMonth = (msg) => {
     const months = {
       january: "01", february: "02", march: "03", april: "04",
@@ -81,13 +81,13 @@ function ChatBot() {
     return null;
   };
 
-  // 📅 year detection
+  // year detection
   const detectYear = (msg) => {
     const match = msg.match(/\b(20\d{2})\b/);
     return match ? match[0] : null;
   };
 
-  // 🔥 full month detection (strong)
+  //  full month detection (strong)
   const detectFullMonth = (msg) => {
     const keywords = [
       "full", "whole", "entire", "monthly", "month", "30", "31", "all"
@@ -107,24 +107,24 @@ function ChatBot() {
     const year = detectYear(msg);
     const isFullMonth = detectFullMonth(msg);
 
-    // 🧠 memory logic
+    //  memory logic
     let finalIntent = intent || lastIntent;
     const finalVeg = normalizeVeg(veg || lastVeg);
     const finalMonth = month || lastMonth;
     const finalYear = year || lastYear;
 
-    // 🔥 force price intent if asking full month
+   
     if (isFullMonth && !intent) {
       finalIntent = "price";
     }
 
-    // update memory
+   
     if (intent) setLastIntent(intent);
     if (veg) setLastVeg(veg);
     if (month) setLastMonth(month);
     if (year) setLastYear(year);
 
-    // ❗ ask for missing vegetable
+   
     if (finalIntent && !finalVeg) {
       setMessages((prev) => [
         ...prev,
@@ -138,7 +138,7 @@ function ChatBot() {
       return;
     }
 
-    // 🧠 SMART MESSAGE (FIXED)
+    // SMART MESSAGE 
     let smartMessage = msg;
 
     if (finalIntent && finalVeg) {
@@ -217,7 +217,7 @@ function ChatBot() {
     minHeight: "calc(100vh - 140px)",
     display: "flex",
     justifyContent: "center",
-    alignItems: "flex-start", // ✅ no more center
+    alignItems: "flex-start", 
     padding: "20px",
     paddingTop: "30px",
   }}
@@ -227,8 +227,8 @@ function ChatBot() {
             width: "90%",
             maxWidth: "900px",
             background: "linear-gradient(135deg, #eef7f0, #ffffff)",
-            transform: "scale(0.85)",   // ✅ THIS LINE
-            transformOrigin: "top center", // ✅ IMPORTANT
+            transform: "scale(0.85)",   
+            transformOrigin: "top center", 
             borderRadius: "20px",
             padding: "20px",
             boxShadow: "0 15px 40px rgba(0,0,0,0.08)",
