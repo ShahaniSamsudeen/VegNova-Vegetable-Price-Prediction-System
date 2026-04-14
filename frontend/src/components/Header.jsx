@@ -2,11 +2,11 @@ import { NavLink } from "react-router-dom";
 
 function Header() {
   const linkStyle = ({ isActive }) => ({
-    padding: "clamp(6px, 1vw, 10px) clamp(10px, 1.5vw, 18px)", // ✅ responsive
+    padding: "clamp(6px, 1vw, 10px) clamp(10px, 1.5vw, 18px)", 
     borderRadius: "10px",
     textDecoration: "none",
     fontWeight: "500",
-    fontSize: "clamp(12px, 1.2vw, 15px)", // ✅ responsive text
+    fontSize: "clamp(12px, 1.2vw, 15px)", 
     color: isActive ? "#ffffff" : "#2e7d32",
     backgroundColor: isActive ? "#2e7d32" : "transparent",
     transition: "all 0.3s ease",
@@ -25,12 +25,12 @@ function Header() {
         style={{
           maxWidth: "1250px",
           margin: "0 auto",
-          minHeight: "clamp(55px, 6vw, 70px)", // ✅ responsive height
-          padding: "0 clamp(10px, 3vw, 30px)", // ✅ responsive padding
+          minHeight: "clamp(55px, 6vw, 70px)", // responsive height
+          padding: "0 clamp(10px, 3vw, 30px)", 
           display: "flex",
           alignItems: "center",
           justifyContent: "flex-start",
-          gap: "clamp(15px, 4vw, 50px)", // ✅ responsive gap
+          gap: "clamp(15px, 4vw, 50px)", 
         }}
       >
         {/* LOGO */}
