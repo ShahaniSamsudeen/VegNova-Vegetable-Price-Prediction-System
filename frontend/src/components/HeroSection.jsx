@@ -9,7 +9,7 @@ const images = [hero1, hero2];
 function HeroSection() {
   const [active, setActive] = useState(0);
 
-  // 🔄 Change background image every 6 seconds
+  //  Change background image every 6 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       setActive((prev) => (prev === 0 ? 1 : 0));
@@ -23,7 +23,7 @@ function HeroSection() {
   style={{
     position: "relative",
     minHeight: "100vh",
-    width: "100%", // 🔥 removes left gap
+    width: "100%", 
   }}
 >
       
@@ -45,7 +45,7 @@ function HeroSection() {
         />
       </AnimatePresence>
 
-      {/* ================= DARK OVERLAY ================= */}
+      {/* ================= DARK OVERLAY == */}
       <div
         style={{
           position: "absolute",
@@ -56,15 +56,15 @@ function HeroSection() {
         }}
       />
 
-      {/* ================= TEXT CONTENT ================= */}
+      {/* == TEXT CONTENT ==*/}
       <div
         style={{
           position: "relative",
           zIndex: 2,
           minHeight: "100vh",
           display: "flex",
-          alignItems: "flex-start",     // 🔥 moved UP
-          padding: "120px 80px 0",      // 🔥 controls vertical position
+          alignItems: "flex-start",     
+          padding: "120px 80px 0",      
         }}
       >
         <div style={{ maxWidth: "850px" }}>
@@ -75,7 +75,7 @@ function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.2 }}
             style={{
-              fontSize: "clamp(48px, 10vw, 140px)",       // 🔥 slightly reduced (better balance)
+              fontSize: "clamp(48px, 10vw, 140px)",       
               color: "#d3e8d5",
               marginBottom: "10px",
               lineHeight: "1",
@@ -84,7 +84,7 @@ function HeroSection() {
             VegNova
           </motion.h1>
 
-          {/* ===== SUBTITLE ===== */}
+          {/* == SUBTITLE == */}
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
