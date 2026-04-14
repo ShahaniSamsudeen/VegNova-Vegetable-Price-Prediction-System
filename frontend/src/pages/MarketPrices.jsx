@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect } from "react";
-import { useNavigate } from "react-router-dom"; // ✅ ADDED
+import { useNavigate } from "react-router-dom"; 
 import {
   LineChart,
   Line,
@@ -13,7 +13,7 @@ import {
 
 export default function MarketPrices() {
 
-  const navigate = useNavigate(); // ✅ ADDED
+  const navigate = useNavigate(); 
 
 const today = new Date("2024-07-05");
 
@@ -128,7 +128,7 @@ const today = new Date("2024-07-05");
         <div style={page}>
           <div style={leftPanel}>
 
-            {/* ✅ NEW BUTTON */}
+            {/* BUTTON */}
             <button
               onClick={() => navigate("/predictions")}
               style={upcomingBtn}
@@ -288,7 +288,7 @@ const today = new Date("2024-07-05");
   );
 }
 
-/* ================= STYLES ================= */
+/* == STYLES ==*/
 
 const pageTitle = { textAlign: "center", fontSize: 26, fontWeight: 700, color: "#000" };
 const page = { display: "grid", gridTemplateColumns: "300px 1fr", gap: 16, padding: 16 };
