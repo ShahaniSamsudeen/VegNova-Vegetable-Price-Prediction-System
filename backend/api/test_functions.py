@@ -3,7 +3,7 @@ from django.test import TestCase
 
 class TestFunctions(TestCase):
 
-    # 🌱 Planting Planner Calculation
+    #  Planting Planner Calculation
     def test_plant_count_calculation(self):
         land_size = 1  # perch
         spacing_cm = 50
@@ -16,7 +16,7 @@ class TestFunctions(TestCase):
         self.assertTrue(plants > 0)
 
 
-    # 🌿 Spacing Logic
+    #  Spacing Logic
     def test_spacing_range_valid(self):
         min_spacing = 10
         max_spacing = 20
@@ -24,7 +24,7 @@ class TestFunctions(TestCase):
         self.assertTrue(min_spacing < max_spacing)
 
 
-    # 💰 Price Calculation
+    #  Price Calculation
     def test_price_average(self):
         prices = [100, 120, 110]
         avg = sum(prices) / len(prices)
@@ -32,7 +32,7 @@ class TestFunctions(TestCase):
         self.assertEqual(avg, 110)
 
 
-    # 🍅 Tomato Detection Count
+    #  Tomato Detection Count
     def test_tomato_total(self):
         ripe = 2
         unripe = 3
@@ -44,7 +44,7 @@ class TestFunctions(TestCase):
 
 #Validation logic
 
-# 🌱 Edge Case — Zero Land
+# Edge Case — Zero Land
     def test_zero_land(self):
         land_size = 0
         spacing = 50
@@ -55,7 +55,7 @@ class TestFunctions(TestCase):
         self.assertEqual(plants, 0)
 
 
-# ⚠️ Validation — Invalid Price
+#  Validation — Invalid Price
     def test_invalid_price(self):
      from core.models import Price
      from datetime import date
