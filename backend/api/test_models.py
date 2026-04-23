@@ -14,11 +14,11 @@ class TestModels(TestCase):
             benefits="Test benefits"
         )
 
-    # 🥕 Vegetable
+    #  Vegetable
     def test_vegetable_creation(self):
         self.assertEqual(self.vegetable.name, "Carrot")
 
-    # 🦠 Disease
+    #  Disease
     def test_disease_creation(self):
         disease = Disease.objects.create(
             vegetable=self.vegetable,
@@ -28,7 +28,7 @@ class TestModels(TestCase):
         )
         self.assertEqual(disease.disease_name, "Leaf Spot")
 
-    # 🐛 Pest
+    #  Pest
     def test_pest_creation(self):
         pest = Pest.objects.create(
             vegetable=self.vegetable,
@@ -39,7 +39,7 @@ class TestModels(TestCase):
         )
         self.assertEqual(pest.pest_name, "Aphids")
 
-    # 💰 Price
+    #  Price
     def test_price_creation(self):
         price = Price.objects.create(
             vegetable=self.vegetable,
@@ -48,7 +48,7 @@ class TestModels(TestCase):
         )
         self.assertEqual(price.price, 100.50)
 
-    # 🌱 Planting Guide
+    #  Planting Guide
     def test_planting_guide_creation(self):
         guide = PlantingGuide.objects.create(
             vegetable=self.vegetable,
@@ -57,7 +57,7 @@ class TestModels(TestCase):
         )
         self.assertEqual(guide.planting_guide, "Plant in rows")
 
-    # 🤖 Smart Planting
+    #  Smart Planting
     def test_smart_planting_creation(self):
         smart = SmartPlanting.objects.create(
             vegetable=self.vegetable,
