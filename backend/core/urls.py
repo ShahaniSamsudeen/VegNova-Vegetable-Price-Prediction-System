@@ -12,6 +12,7 @@ from .views import (
     forecast_range,
     chat_api,
     detect_tomatoes,
+    monthly_prices,
 )
 
 # Router
@@ -35,4 +36,5 @@ urlpatterns = [
 
     # Tomato detection
     path("detect/", detect_tomatoes),
+    path("monthly-prices/", monthly_prices),
 ]
