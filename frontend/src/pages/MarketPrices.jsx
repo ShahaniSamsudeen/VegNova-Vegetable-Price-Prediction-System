@@ -24,6 +24,7 @@ const today = new Date("2024-07-05");
 // default vegetable
   const [vegetable, setVegetable] = useState("Cabbage");
   const [priceData, setPriceData] = useState(null);
+  const [multiYearData, setMultiYearData] = useState([]);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [hasChanges, setHasChanges] = useState(false);
@@ -77,9 +78,30 @@ const today = new Date("2024-07-05");
       setLoading(false);
     }
   };
+
+  const fetchMonthlyPrices = async () => {
+    try {
+      const res = await fetch(
+        `http://127.0.0.1:8000/api/monthly-prices/?veg=${vegetable}&month=${month + 1}`
+      );
+
+      const data = await res.json();
+
+      setMultiYearData(data);
+
+    } catch {
+      console.log("Monthly chart fetch failed");
+    }
+  };
+
   useEffect(() => {
   fetchPrices();
-}, []);
+}, [year, month, day, vegetable]);
+
+  useEffect(() => {
+    fetchMonthlyPrices();
+  }, [vegetable, month]);
+
   const insight = useMemo(() => {
     if (!priceData) return null;
 
@@ -97,26 +119,13 @@ const today = new Date("2024-07-05");
   }, [priceData]);
 
   const dailyChartData = useMemo(() => {
-    if (!priceData) return [];
-    return Array.from({ length: daysInMonth }, (_, i) => ({
-      day: i + 1,
-      avg: Math.round(priceData.avg + (Math.random() - 0.5) * 20),
-    }));
-  }, [priceData, daysInMonth]);
+  if (!multiYearData || multiYearData.length === 0) return [];
 
-  const multiYearDailyData = useMemo(() => {
-    if (!priceData) return [];
-    const base = priceData.avg;
-
-    return Array.from({ length: daysInMonth }, (_, i) => ({
-      day: i + 1,
-      y2020: Math.round(base - 80 + Math.random() * 20),
-      y2021: Math.round(base - 50 + Math.random() * 20),
-      y2022: Math.round(base - 20 + Math.random() * 20),
-      y2023: Math.round(base + Math.random() * 20),
-      y2024: Math.round(base + 30 + Math.random() * 20),
-    }));
-  }, [priceData, daysInMonth]);
+  return multiYearData.map((item) => ({
+    day: item.day,
+    avg: item[`y${year}`],
+  }));
+}, [multiYearData, year]);
 
   return (
     <>
@@ -139,7 +148,7 @@ const today = new Date("2024-07-05");
             <div style={box}>
               <h3 style={{ fontSize: 14, marginBottom: 6 }}>Year</h3>
               <div style={grid4}>
-                {[2022, 2023, 2024, 2025, 2026].map(y => (
+                {[2020,2021,2022, 2023, 2024, 2025, 2026].map(y => (
                   <button
                     key={y}
                     onClick={() => {
@@ -211,22 +220,16 @@ const today = new Date("2024-07-05");
                   {vegetables.map(v => <option key={v}>{v}</option>)}
                 </select>
 
-               <button
-  onClick={() => {
-    fetchPrices();
-    setHasChanges(false);
-  }}
-  disabled={!hasChanges && priceData}
+                <p
   style={{
-    ...button,
-    background: hasChanges ? "#1b5e20" : "#bdbdbd",
-    cursor: hasChanges ? "pointer" : "not-allowed",
-    opacity: hasChanges ? 1 : 0.7
+    fontSize: 11,
+    color: "#666",
+    marginTop: -10,
+    marginBottom: 18,
   }}
 >
-  {loading ? "Loading..." : hasChanges ? "Update Price" : "Up to Date"}
-</button>
-
+  Prices update automatically based on selected filters.
+</p>
                 {error && <p style={{ color: "#000" }}>{error}</p>}
 
                 {priceData && (
@@ -260,10 +263,10 @@ const today = new Date("2024-07-05");
                   </ResponsiveContainer>
 
                   <h4 style={{ marginTop: 20, fontSize: 14 }}>
-                    📊 July Daily {vegetable || "Vegetable"} Prices (2020–2024)
+                    📊 {months[month]} Daily {vegetable || "Vegetable"} Prices (2020–2026)
                   </h4>
                   <ResponsiveContainer width="100%" height={200}>
-                    <LineChart data={multiYearDailyData}>
+                    <LineChart data={multiYearData}>
                       <CartesianGrid stroke="#ddd" />
                       <XAxis dataKey="day" stroke="#000" />
                       <YAxis stroke="#000" />
@@ -274,6 +277,8 @@ const today = new Date("2024-07-05");
                       <Line dataKey="y2022" stroke="#2ca02c" />
                       <Line dataKey="y2023" stroke="#d62728" />
                       <Line dataKey="y2024" stroke="#9467bd" strokeWidth={3} />
+                      <Line dataKey="y2025" stroke="#8c564b" />
+                      <Line dataKey="y2026" stroke="#e377c2" />
                     </LineChart>
                   </ResponsiveContainer>
                 </div>
