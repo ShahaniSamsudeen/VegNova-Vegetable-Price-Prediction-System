@@ -231,6 +231,99 @@ def market_prices(request):
         "max": round(max_val, 2),
         "avg": round(avg_val, 2),
     })
+
+@require_GET
+def monthly_prices(request):
+    veg = request.GET.get("veg")
+    month = request.GET.get("month")
+
+    if not veg or not month:
+        return JsonResponse({"error": "veg and month are required"}, status=400)
+
+    veg_clean = veg.strip().lower()
+    month = int(month)
+
+    BASE_DIR = settings.BASE_DIR.parent
+    datasets_dir = os.path.join(BASE_DIR, "ml", "datasets")
+
+    dataset_file = None
+    for file in os.listdir(datasets_dir):
+        fname = file.lower()
+
+        if veg_clean in fname:
+            dataset_file = file
+            break
+
+        if veg_clean == "radish" and "raddish" in fname:
+            dataset_file = file
+            break
+
+    if not dataset_file:
+        return JsonResponse({"error": f"No dataset found for {veg}"}, status=404)
+
+    file_path = os.path.join(datasets_dir, dataset_file)
+
+    df = pd.read_excel(file_path)
+
+    df.columns = [
+        c.strip()
+        .lower()
+        .replace(" ", "_")
+        .replace("-", "_")
+        for c in df.columns
+    ]
+
+    date_col = next((c for c in df.columns if "date" in c), None)
+
+    if not date_col:
+        return JsonResponse({"error": "Date column not found"}, status=500)
+
+    def veg_match(col):
+        return (
+            veg_clean in col
+            or (veg_clean == "radish" and "raddish" in col)
+        )
+
+    min_col = next((c for c in df.columns if "min" in c and veg_match(c)), None)
+    max_col = next((c for c in df.columns if "max" in c and veg_match(c)), None)
+
+    if not min_col or not max_col:
+        return JsonResponse({"error": "Price columns not found"}, status=500)
+
+    df[date_col] = pd.to_datetime(df[date_col], errors="coerce")
+
+    df = df[df[date_col].dt.month == month]
+
+    years = [2020, 2021, 2022, 2023, 2024, 2025, 2026]
+
+    result = []
+
+    for day in range(1, 32):
+
+        row_data = {"day": day}
+
+        for year in years:
+
+            row = df[
+                (df[date_col].dt.year == year)
+                & (df[date_col].dt.day == day)
+            ]
+
+            if not row.empty:
+
+                min_val = float(row[min_col].values[0])
+                max_val = float(row[max_col].values[0])
+
+                avg_val = round((min_val + max_val) / 2, 2)
+
+                row_data[f"y{year}"] = avg_val
+
+            else:
+                row_data[f"y{year}"] = None
+
+        result.append(row_data)
+
+    return JsonResponse(result, safe=False)
 @api_view(["GET"])
 def forecast_range(request, vegetable):
     """
