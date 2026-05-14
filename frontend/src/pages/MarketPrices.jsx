@@ -39,7 +39,16 @@ const today = new Date("2023-08-08");
     "Leeks",
     "Knolkhol",
   ];
+  const availableYears = {
+  Beans: [2020, 2021, 2022, 2023, 2024],
 
+  Carrot: [2020, 2021, 2022, 2023, 2024, 2025, 2026],
+  Cabbage: [2020, 2021, 2022, 2023, 2024, 2025, 2026],
+  Tomato: [2020, 2021, 2022, 2023, 2024, 2025, 2026],
+  Radish: [2020, 2021, 2022, 2023, 2024, 2025, 2026],
+  Leeks: [2020, 2021, 2022, 2023, 2024, 2025, 2026],
+  Knolkhol: [2020, 2021, 2022, 2023, 2024, 2025, 2026],
+};
   const months = [
     "Jan","Feb","Mar","Apr","May","Jun",
     "Jul","Aug","Sep","Oct","Nov","Dec"
@@ -101,6 +110,13 @@ const today = new Date("2023-08-08");
   useEffect(() => {
     fetchMonthlyPrices();
   }, [vegetable, month]);
+  useEffect(() => {
+  const validYears = availableYears[vegetable];
+
+  if (!validYears.includes(year)) {
+    setYear(validYears[validYears.length - 1]);
+  }
+}, [vegetable]);
 
   const insight = useMemo(() => {
     if (!priceData) return null;
@@ -148,7 +164,7 @@ const today = new Date("2023-08-08");
             <div style={box}>
               <h3 style={{ fontSize: 14, marginBottom: 6 }}>Year</h3>
               <div style={grid4}>
-                {[2020,2021,2022, 2023, 2024, 2025, 2026].map(y => (
+                {availableYears[vegetable].map(y => (
                   <button
                     key={y}
                     onClick={() => {
@@ -230,6 +246,18 @@ const today = new Date("2023-08-08");
 >
   Prices update automatically based on selected filters.
 </p>
+{vegetable === "Beans" && (
+  <p
+    style={{
+      fontSize: 11,
+      color: "#888",
+      marginTop: -10,
+      marginBottom: 12,
+    }}
+  >
+    2025–2026 market price data is currently unavailable for Beans.
+  </p>
+)}
                 {error && <p style={{ color: "#000" }}>{error}</p>}
 
                 {priceData && (
