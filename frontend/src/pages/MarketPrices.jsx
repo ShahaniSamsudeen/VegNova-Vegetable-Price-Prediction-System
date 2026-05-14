@@ -15,7 +15,7 @@ export default function MarketPrices() {
 
   const navigate = useNavigate(); 
 
-const today = new Date("2024-07-05");
+const today = new Date("2023-08-08");
 
   const [year, setYear] = useState(today.getFullYear());
   const [month, setMonth] = useState(today.getMonth());
